@@ -1,0 +1,18 @@
+checklist:
+  basic:
+    title: "Básico"
+    tasks:
+      - id: html-prototype
+        check: "HTML: what's its purpose? Create an HTML file in your computer and show an image in that page."
+      - id: css-prototype
+        check: "CSS: what's its purpose? Create a CSS stylesheet in an HTML page, and change some colors to get a basic understanding of how it's used."
+      - id: http-into
+        check: "HTTP: What is HTTP? Why was it created? Where is it used?"
+      - id: http-request-cycle-intro
+        check: "HTTP: describe an HTTP request cycle (request, response, status codes, headers, body). This article is good and clear on this subject."
+      - id: unix-intro
+        check: "Basics on how to use the Unix (Linux/Mac) terminal, how to list files, change and create directories."
+      - id: create-file-via-terminal
+        check: "Know how to create a Ruby file in the terminal and execute it."
+      - id: what-is-json
+        check: "JSON: understand what it is and memorize its format."

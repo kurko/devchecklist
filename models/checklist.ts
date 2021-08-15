@@ -1,21 +1,12 @@
-import yaml from 'js-yaml';
-import fs from 'fs';
-
-// Get document, or throw exception on error
+// This import is possible due to js-yaml-loader configured in webpack.
+// @ts-ignore
+import doc from '../data/checklist.ptbr.yml';
 
 export class ChecklistModel {
   constructor() {
   }
 
   checklist(): string[] {
-    var doc;
-
-    try {
-      doc = yaml.load(fs.readFileSync('data/checklist.ptbr.yml', 'utf8'));
-    } catch (e) {
-      console.log(e);
-    }
-
     return doc.checklist;
   }
 }

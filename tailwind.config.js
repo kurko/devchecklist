@@ -2,7 +2,20 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '""'
+            },
+            'code::after': {
+              content: '""'
+            }
+          }
+        }
+      },
+    },
   },
   variants: {
     extend: {},
@@ -11,5 +24,6 @@ module.exports = {
     require('@tailwindcss/forms')({
       strategy: 'class',
     }),
+    require("@tailwindcss/typography")
   ],
 }

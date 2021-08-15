@@ -16,9 +16,9 @@ function Home({ checklist }: InferGetStaticPropsType<typeof getStaticProps>) {
 
       <Layout>
         <main>
+          <h1 className="mb-10">Checklist Do Dev</h1>
 
-        <Checklist checklist={checklist}/>
-
+          <Checklist checklist={checklist}/>
         </main>
       </Layout>
     </div>

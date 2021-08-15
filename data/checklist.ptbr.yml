@@ -1,18 +1,189 @@
 checklist:
-  basic:
-    title: "Básico"
-    tasks:
-      - id: html-prototype
-        check: "HTML: what's its purpose? Create an HTML file in your computer and show an image in that page."
-      - id: css-prototype
-        check: "CSS: what's its purpose? Create a CSS stylesheet in an HTML page, and change some colors to get a basic understanding of how it's used."
-      - id: http-into
-        check: "HTTP: What is HTTP? Why was it created? Where is it used?"
-      - id: http-request-cycle-intro
-        check: "HTTP: describe an HTTP request cycle (request, response, status codes, headers, body). This article is good and clear on this subject."
-      - id: unix-intro
-        check: "Basics on how to use the Unix (Linux/Mac) terminal, how to list files, change and create directories."
-      - id: create-file-via-terminal
-        check: "Know how to create a Ruby file in the terminal and execute it."
-      - id: what-is-json
-        check: "JSON: understand what it is and memorize its format."
+  lists:
+    basic:
+      title: "Básico"
+      description: |
+        Na primeira fase da sua jornada você se familiarizará com conceitos básicos. Eles são pilares importantes.
+        
+        Você não deve se aprofundar demais em cada tópico porque isso virá
+        naturalmente com o tempo. O objetivo é cobrir mais terreno e se sentir
+        mais confortável com as diferentes áreas.
+
+      taskSet:
+        - description: |
+            Vamos começar com alguns conceitos básicos.
+
+          tasks:
+            - id: html-first-encounter
+              check: "HTML: O que é? Qual seu propósito?"
+              description: |
+                Leia sobre HTML, tente compreender brevemente para o que é usado. Não é necessário criar nada, apenas compreensão básica.
+                É esperado que você veja código HTML e tente se localizar na sua estrutura, sem se aprofundar.
+
+                Por exemplo, você verá que todo HTML tem <code>&lt;head&gt;...&lt;/head&gt;</code> e <code>&lt;body&gt;...&lt;/body&gt;</code>.
+                O que são esses códigos?
+
+            - id: css--first-encounter
+              check: "CSS: O que é? Qual seu propósito no HTML?"
+
+            - id: html-intro-prototype
+              check: "Primeiro protótipo HTML"
+              description: |
+                Crie um arquivo <code>.html</code> no seu computador. Faça aparecer uma imagem nesta página. Coloque um título vermelho. Crie alguns parágrafos.
+                Crie uma lista usando <code>&lt;ul&gt;...&lt;/ul&gt;</code> e <code>&lt;li&gt;...&lt;/li&gt;</code>.
+
+                Nesse momento você vai começar a solidificar o que você leu na introdução ao HTML, e buscar como resolver problemas básicos.
+
+            - id: css-intro-prototype
+              check: "Primeiro encontro com CSS"
+              description: |
+                Crie um arquivo CSS e importe no HTML que você já criou. Mude as cores de alguns pedaços de texto. Mude o tamanho do título. Deixe as bordas da imagem arredondadas.
+
+            - id: http-into
+              check: "HTTP: What is HTTP? Why was it created? Where is it used?"
+
+            - id: http-request-cycle-intro
+              check: "HTTP: describe an HTTP request cycle (request, response, status codes, headers, body). This article is good and clear on this subject."
+
+            - id: unix-intro
+              check: "Basics on how to use the Unix (Linux/Mac) terminal, how to list files, change and create directories."
+
+            - id: create-file-via-terminal
+              check: "Know how to create a Ruby file in the terminal and execute it."
+
+            - id: what-is-json
+              check: "JSON: understand what it is and memorize its format."
+
+        - description: "It's also important to look at some very basic data structures and algorithms."
+          tasks:
+            - id: what
+              check: "What is the purpose of data structures? List some data structures."
+              description: |
+                abc
+
+            - id: xxx
+              check: "What is a graph? What are some general problems in society that can be modeled as graphs?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "What is a binary search?"
+              description: |
+                abc
+
+        - description: ""
+          tasks:
+            - id: xxx
+              check: "OOP: Understand the concept of Object Oriented Programming and classes."
+              description: |
+                ""
+
+            - id: xxx
+              check: "Ruby: have seen syntax for functions (def), classes (class) and how to instance objects."
+              description: |
+                abc
+
+            - id: xxx
+              check: "Ruby: what is an array? What is a hash? What's the difference between the two?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "Understand what is Git."
+              description: |
+                abc
+
+            - id: xxx
+              check: "Understand what is Github."
+              description: |
+                abc
+
+            - id: xxx
+              check: "Understand what is a database."
+              description: |
+                abc
+
+            - id: xxx
+              check: "Explain what is a Ruby gem."
+              description: |
+                abc
+
+        - description: "Then, it's important to understand the basic structure of a Ruby on Rails application. This tutorial goes through some of the items below and is recommended."
+          tasks:
+            - id: xxx
+              check: "What is Ruby on Rails? Why was it created? Why is it used instead of just regular Ruby or HTML?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "Basics about Routes: what are resources, root_path, rake routes"
+              description: |
+                abc
+
+            - id: xxx
+              check: "Basics about Controllers: what are the 7 actions? How are model instances loaded in controllers?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "Basics about Views: how are view files organized? Understand what is ERB. How is Ruby code injected inside views? What are helpers and how do you use them?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "Basics about Models: open rails console and list records from the database; create new records."
+              description: |
+                abc
+
+            - id: xxx
+              check: "What is rails server?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "What are Model Validations in Rails, and what's its basic syntax."
+              description: |
+                abc
+
+        - description: "Beyond Rails:"
+          tasks:
+            - id: explain-what-is-an-api
+              check: "Be able to explain what is an API."
+              description: |
+                abc
+
+            - id: xxx
+              check: "Make sure you have cloned a Github repository."
+              description: |
+                abc
+
+            - id: xxx
+              check: "Understand the purpose of SQL."
+              description: |
+                abc
+
+            - id: xxx
+              check: "Postgres: what is a table? What are the columns in a table?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "What's the difference between some databases like Postgres, MySQL, SQLite and Redis."
+              description: |
+                abc
+
+            - id: xxx
+              check: "What is automated testing? What's unit tests? Acceptance tests? What's TDD and what's BDD?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "What's RSpec? What's Capybara?"
+              description: |
+                abc
+
+            - id: xxx
+              check: "Write first RSpec test. This tutorial is really good."
+              description: |
+                abc
+

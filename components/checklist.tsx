@@ -1,37 +1,106 @@
-//import Model from '../models/checklist'
+import React, { Fragment } from 'react'
+import { GetStaticProps } from 'next'
+import { InferGetStaticPropsType } from 'next'
 
-function Task({ task }: InferGetStaticPropsType<typeof getStaticProps>) {
+function textToParagraph(text: string, options?: { tag: string }): string {
+  var tag = "<p>"
 
+  if (options?.tag) {
+    tag = options?.tag
+  }
+
+  console.log(tag)
+  text = text.replace("\n\n", "</p>"+tag);
+  text = `${tag}${text}</p>`;
+  return text
 }
 
-function Checklist({ checklist }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const renderSection = (sectionName) => {
-    const section = checklist[sectionName];
-    const tasks = section.tasks;
+/**
+ * React won't render strings as HTML. It automatically converts `<` to `&lt;`.
+ * This function returns a tag with text converted to final HTML. For example,
+ *
+ *     rawToHtml(description, { tag: "div", className: "ml-0 mt-0 mb-1 text-sm prose" })
+ */
+function rawToHtml(text: string, options?: { className: string }) {
+  return (
+    <div
+      className={options?.className}
+      dangerouslySetInnerHTML={{ __html: textToParagraph(text) }}>
+    </div>
+  )
+}
+
+function Task({ task }: InferGetStaticPropsType<GetStaticProps>) {
+  let description = null
+
+  if (task.description) {
+    description = task.description;
+  }
+
+  return (
+    <div className="py-1">
+      <label className="inline-flex mt-1">
+        <input type="checkbox" className="form-checkbox rounded mt-1.5" />
+        <div className="ml-2 mt-0 prose">
+          <div className="ml-0 mt-0">
+            {task.check}
+          </div>
+
+          {description && (
+            rawToHtml(description, { className: "ml-0 mt-0 mb-1 text-sm prose" })
+          )}
+        </div>
+      </label>
+    </div>
+  )
+}
+
+function TaskSet({ taskSet }: InferGetStaticPropsType<GetStaticProps>) {
+  const tasks = taskSet.tasks;
+
+  return (
+    <>
+      {taskSet.description &&
+        rawToHtml(taskSet.description, { className: "mb-2 text-sm prose" })
+      }
+
+      {tasks.map((task, index) => (
+        <Task key={task.id} task={task} />
+      ))}
+    </>
+  )
+}
+
+function Checklist({ checklist }: InferGetStaticPropsType<GetStaticProps>) {
+  const renderList = (listName) => {
+    const list = checklist.lists[listName];
+    const taskSets = list.taskSet;
 
     return (
       <>
-        <h2>{section.title}</h2>
+        <h2>{list.title}</h2>
 
-        {tasks.map((value, index) => (
-          <div key={value.id} className="py-1">
-            <label class="inline-flex">
-              <input type="checkbox" class="form-checkbox rounded mt-1" />
-              <span class="ml-2 mt-0">
-                {value.check}
-              </span>
-            </label>
-          </div>
+        {list.description &&
+          rawToHtml(list.description, { className: "mb-2 text-sm prose" })
+        }
+
+        {taskSets.map((taskSet, index) => (
+          <TaskSet key={index} taskSet={taskSet} />
         ))}
       </>
     )
   }
 
+  const renderLists = () => {
+    return Object
+      .entries(checklist.lists)
+      .map(([listName, _]) => renderList(listName));
+  }
+
   return (
     <>
-      <h1>Checklist</h1>
       <div>
-        {renderSection('basic')}
+        {renderLists()}
       </div>
     </>
   )

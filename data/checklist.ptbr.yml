@@ -23,7 +23,7 @@ checklist:
                 Por exemplo, você verá que todo HTML tem <code>&lt;head&gt;...&lt;/head&gt;</code> e <code>&lt;body&gt;...&lt;/body&gt;</code>.
                 O que são esses códigos?
 
-            - id: css--first-encounter
+            - id: css-first-encounter
               check: "CSS: O que é? Qual seu propósito no HTML?"
 
             - id: html-intro-prototype

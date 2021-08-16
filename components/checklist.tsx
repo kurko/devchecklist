@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import { InferGetStaticPropsType } from 'next'
 
@@ -9,7 +9,6 @@ function textToParagraph(text: string, options?: { tag: string }): string {
     tag = options?.tag
   }
 
-  console.log(tag)
   text = text.replace("\n\n", "</p>"+tag);
   text = `${tag}${text}</p>`;
   return text
@@ -31,16 +30,29 @@ function rawToHtml(text: string, options?: { className: string }) {
 }
 
 function Task({ task }: InferGetStaticPropsType<GetStaticProps>) {
-  let description = null
+  const description = task.description
+  const taskId = (id) => `task-${id}`
+  const [checked, check] = useState(false);
 
-  if (task.description) {
-    description = task.description;
+  useEffect(() => {
+    check(window.localStorage.getItem(taskId(task.id)) == "true")
+  }, []); // only run on first render
+
+  const handleCheck = (event) => {
+    check(!checked)
+    window.localStorage.setItem(taskId(task.id), `${!checked}`)
   }
 
   return (
     <div className="py-1">
       <label className="inline-flex mt-1">
-        <input type="checkbox" className="form-checkbox rounded mt-1.5" />
+        <input
+          name="isTaskComplete"
+          type="checkbox"
+          className="form-checkbox rounded mt-1.5"
+          checked={checked}
+          onChange={handleCheck} />
+
         <div className="ml-2 mt-0 prose">
           <div className="ml-0 mt-0">
             {task.check}
@@ -67,7 +79,7 @@ function TaskSet({ taskSet }: InferGetStaticPropsType<GetStaticProps>) {
       }
 
       {tasks.map((task, index) => (
-        <Task key={task.id} task={task} />
+        <Task key={index} task={task} />
       ))}
     </div>
   )
@@ -96,7 +108,11 @@ function Checklist({ checklist }: InferGetStaticPropsType<GetStaticProps>) {
   const renderLists = () => {
     return Object
       .entries(checklist.lists)
-      .map(([listName, _]) => renderList(listName));
+      .map(([listName, _], key) => (
+        <Fragment key={key}>
+          {renderList(listName)}
+        </Fragment>
+      ));
   }
 
   return (

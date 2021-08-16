@@ -47,7 +47,9 @@ function Task({ task }: InferGetStaticPropsType<GetStaticProps>) {
           </div>
 
           {description && (
-            rawToHtml(description, { className: "ml-0 mt-0 mb-1 text-sm prose" })
+            <div className="pb-4">
+              {rawToHtml(description, { className: "ml-0 text-sm prose" })}
+            </div>
           )}
         </div>
       </label>
@@ -59,15 +61,15 @@ function TaskSet({ taskSet }: InferGetStaticPropsType<GetStaticProps>) {
   const tasks = taskSet.tasks;
 
   return (
-    <>
+    <div className="mb-8">
       {taskSet.description &&
-        rawToHtml(taskSet.description, { className: "mb-2 text-sm prose" })
+        rawToHtml(taskSet.description, { className: "mt-6 prose" })
       }
 
       {tasks.map((task, index) => (
         <Task key={task.id} task={task} />
       ))}
-    </>
+    </div>
   )
 }
 
@@ -81,10 +83,10 @@ function Checklist({ checklist }: InferGetStaticPropsType<GetStaticProps>) {
         <h2>{list.title}</h2>
 
         {list.description &&
-          rawToHtml(list.description, { className: "mb-2 text-sm prose" })
+          rawToHtml(list.description, { className: "mt-2 mb-0 prose" })
         }
 
-        {taskSets.map((taskSet, index) => (
+        {taskSets && taskSets.map((taskSet, index) => (
           <TaskSet key={index} taskSet={taskSet} />
         ))}
       </>

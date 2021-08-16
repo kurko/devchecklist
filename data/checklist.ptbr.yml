@@ -56,12 +56,10 @@ checklist:
 
         - description: "It's also important to look at some very basic data structures and algorithms."
           tasks:
-            - id: what
+            - id: what-are-data-structures
               check: "What is the purpose of data structures? List some data structures."
-              description: |
-                abc
 
-            - id: xxx
+            - id: graph-first-encounter
               check: "What is a graph? What are some general problems in society that can be modeled as graphs?"
               description: |
                 abc
@@ -186,4 +184,16 @@ checklist:
               check: "Write first RSpec test. This tutorial is really good."
               description: |
                 abc
+
+    beginner:
+      title: "Iniciante"
+      description: |
+        At this point you know the basic concepts and how they fit together,
+        although you don't know how to use them. You often ask for help and
+        you're starting to put more effort into the actual commands needed to
+        get things done.
+
+        You're also learning new concepts, although from a very high level.
+        Meanwhile, you're getting deeper into some concepts from the previous
+        level.
 

@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import { Transition } from '@headlessui/react'
 import { GetStaticProps } from 'next'
 import { InferGetStaticPropsType } from 'next'
 
@@ -33,19 +34,26 @@ function Task({ task }: InferGetStaticPropsType<GetStaticProps>) {
   const description = task.description
   const taskId = (id) => `task-${id}`
   const [checked, check] = useState(false);
+  const [expanded, expand] = useState(false);
 
   useEffect(() => {
     check(window.localStorage.getItem(taskId(task.id)) == "true")
   }, []); // only run on first render
 
-  const handleCheck = (event) => {
-    check(!checked)
-    window.localStorage.setItem(taskId(task.id), `${!checked}`)
-  }
+  const handleCheck = (event) => check(!checked)
+  const handleExpand = (event) => expand(description && !expanded)
 
   return (
-    <div className="py-1">
-      <label className="inline-flex mt-1">
+    <div
+      className={`
+        -ml-2 pl-2 pr-2 -mr-2
+        rounded-l
+        py-1 my-1 transition-all transform duration-400
+        ${expanded ? 'bg-blue-50' : ''}
+      `}>
+      <div
+        className="inline-flex mt-1">
+
         <input
           name="isTaskComplete"
           type="checkbox"
@@ -54,17 +62,28 @@ function Task({ task }: InferGetStaticPropsType<GetStaticProps>) {
           onChange={handleCheck} />
 
         <div className="ml-2 mt-0 prose">
-          <div className="ml-0 mt-0">
+          <div className="ml-0 mt-0" onClick={handleExpand}>
             {task.check}
           </div>
 
           {description && (
-            <div className="pb-4">
-              {rawToHtml(description, { className: "ml-0 text-sm prose" })}
-            </div>
+            <Transition
+              show={expanded}
+              enter="transform transition-height ease-in-out duration-100"
+              enterFrom="h-0"
+              enterTo="h-full"
+              leave="transform transition-height ease-in-out duration-200"
+              leaveFrom="h-full"
+              leaveTo="h-0"
+              className="overflow-y-hidden"
+            >
+              <div className="pb-4">
+                {rawToHtml(description, { className: "ml-0 text-sm prose" })}
+              </div>
+            </Transition>
           )}
         </div>
-      </label>
+      </div>
     </div>
   )
 }

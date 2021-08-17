@@ -18,7 +18,7 @@ function Home({ checklist }: InferGetStaticPropsType<typeof getStaticProps>) {
         <main>
           <h1 className="mb-4">Checklist Do Dev</h1>
 
-          <div className="mb-7">
+          <div className="mb-7 prose">
             <p>
               Este roadmap possui as habilidades necessárias para trabalhar com desenvolvimento.
             </p>

@@ -15,10 +15,14 @@ module.exports = {
           }
         }
       },
+      transitionProperty: {
+        'height': 'height'
+      },
     },
   },
   variants: {
     extend: {},
+    height: ['responsive', 'hover', 'focus']
   },
   plugins: [
     require('@tailwindcss/forms')({

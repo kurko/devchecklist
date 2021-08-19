@@ -113,56 +113,56 @@ function TaskSet({ taskSet }: InferGetStaticPropsType<GetStaticProps>) {
   )
 }
 
+function List({ listName }: InferGetStaticPropsType<GetStaticProps>) {
+  const list = checklistModel.getList(listName);
+  const taskSets = list.taskSet;
+  const [expanded, expand] = useState(false);
+
+  useEffect(() => {
+    expand(checklistModel.isListReadyToBeStarted(listName))
+  }, [])
+
+  const handleListCollapsing = (event) => {
+    checklistModel.markListAsCollapsed(listName, expanded)
+    expand(!expanded)
+  }
+
+  return (
+    <>
+      <div onClick={handleListCollapsing} className="flex">
+        <h2 className="flex-initial">
+          {list.title}
+        </h2>
+        <ChevronRightIcon
+          className={`
+            flex-initial h-7 w-7 mt-1 text-gray-300
+            transform transition duration-100
+            ${expanded ? "rotate-90 mt-1" : "text-blue-400"}
+          `} />
+      </div>
+
+      <div className={expanded ? "" : "hidden"}>
+        {list.description &&
+          rawToHtml(list.description, { className: "mt-2 mb-0 prose" })
+        }
+
+        {taskSets && taskSets.map((taskSet, index) => (
+          <TaskSet key={index} taskSet={taskSet} />
+        ))}
+      </div>
+    </>
+  )
+}
+
 function Checklist({ checklist }: InferGetStaticPropsType<GetStaticProps>) {
   checklistModel = new ChecklistModel(checklist)
-
-  const renderList = (listName) => {
-    const list = checklist.lists[listName];
-    const taskSets = list.taskSet;
-    const [expanded, expand] = useState(false);
-
-    useEffect(() => {
-      expand(checklistModel.isListReadyToBeStarted(listName))
-    }, [])
-
-    const handleListCollapsing = (event) => {
-      checklistModel.markListAsCollapsed(listName, expanded)
-      expand(!expanded)
-    }
-
-    return (
-      <>
-        <div onClick={handleListCollapsing} className="flex">
-          <h2 className="flex-initial">
-            {list.title}
-          </h2>
-          <ChevronRightIcon
-            className={`
-              flex-initial h-7 w-7 mt-1 text-gray-300
-              transform transition duration-100
-              ${expanded ? "rotate-90 mt-1" : "text-blue-400"}
-            `} />
-        </div>
-
-        <div className={expanded ? "" : "hidden"}>
-          {list.description &&
-            rawToHtml(list.description, { className: "mt-2 mb-0 prose" })
-          }
-
-          {taskSets && taskSets.map((taskSet, index) => (
-            <TaskSet key={index} taskSet={taskSet} />
-          ))}
-        </div>
-      </>
-    )
-  }
 
   const renderLists = () => {
     return Object
       .entries(checklist.lists)
       .map(([listName, _], key) => (
         <Fragment key={key}>
-          {renderList(listName)}
+          <List listName={listName} />
         </Fragment>
       ));
   }

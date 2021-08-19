@@ -15,6 +15,10 @@ export class ChecklistModel {
     return doc.checklist;
   }
 
+  getList(name: string) {
+    return this.data.lists[name]
+  }
+
   /**
    * Should we show a list open? If we showed all of them open, it'd be
    * unntanable for the user. It's best to hide some. The decision whether to
@@ -67,7 +71,7 @@ export class ChecklistModel {
   private listTasks(listName: string): any {
     let tasks = []
     console.log("listTasks listname", listName)
-    this.data.lists[listName].taskSet.forEach((set) => {
+    this.getList(listName).taskSet.forEach((set) => {
       set.tasks.forEach((task) => tasks.push(task))
     })
     return tasks

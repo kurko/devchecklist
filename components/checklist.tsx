@@ -138,7 +138,7 @@ function Checklist({ checklist }: InferGetStaticPropsType<GetStaticProps>) {
           </h2>
           <ChevronRightIcon
             className={`
-              flex-initial h-7 w-7 mt-1 text-gray-400
+              flex-initial h-7 w-7 mt-1 text-gray-300
               transform transition duration-100
               ${expanded ? "rotate-90 mt-1" : "text-blue-400"}
             `} />

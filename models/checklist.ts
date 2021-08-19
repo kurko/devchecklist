@@ -3,10 +3,20 @@
 import doc from '../data/checklist.ptbr.yml';
 
 export class ChecklistModel {
-  constructor() {
+  taskId = (id) => `task-${id}`
+
+  constructor(list: string) {
   }
 
-  checklist(): string[] {
+  static all(): string[] {
     return doc.checklist;
+  }
+
+  check(id: string, value: boolean) {
+    window.localStorage.setItem(this.taskId(id), `${value}`)
+  }
+
+  isChecked(id: string): boolean {
+    return window.localStorage.getItem(this.taskId(id)) == "true"
   }
 }

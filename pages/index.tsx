@@ -36,7 +36,7 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      checklist: new ChecklistModel().checklist()
+      checklist: ChecklistModel.all()
     }
   }
 }

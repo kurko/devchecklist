@@ -188,12 +188,62 @@ checklist:
     beginner:
       title: "Iniciante"
       description: |
-        At this point you know the basic concepts and how they fit together,
-        although you don't know how to use them. You often ask for help and
-        you're starting to put more effort into the actual commands needed to
-        get things done.
+        A esta altura you sabe os conceitos básicos e como eles se encaixam,
+        mas você provavelmente não sabe como usá-los.
 
-        You're also learning new concepts, although from a very high level.
-        Meanwhile, you're getting deeper into some concepts from the previous
-        level.
+        Você também está aprendendo novos conceitos, embora ainda num nível muito alto.
+        Enquanto isso, você começa a se aprofundar em alguns conceitos do nível anterior.
 
+      taskSet:
+        - description: |
+            Vamos estudar estruturas de dados.
+
+          tasks:
+            - id: stack-intro
+              check: Stack
+            - id: queue-intro
+              check: Queue
+            - id: binary-tree-intro
+              check: Binary tree
+
+    midlevel:
+      title: "Pleno"
+      description: |
+        A esta altura you sabe os conceitos básicos e como eles se encaixam,
+        mas você provavelmente não sabe como usá-los.
+
+        Você também está aprendendo novos conceitos, embora ainda num nível muito alto.
+        Enquanto isso, você começa a se aprofundar em alguns conceitos do nível anterior.
+
+      taskSet:
+        - description: |
+            Vamos estudar estruturas de dados.
+
+          tasks:
+            - id: stack-intro
+              check: Stack
+            - id: queue-intro
+              check: Queue
+            - id: binary-tree-intro
+              check: Binary tree
+
+    senior:
+      title: "Senior"
+      description: |
+        A esta altura you sabe os conceitos básicos e como eles se encaixam,
+        mas você provavelmente não sabe como usá-los.
+
+        Você também está aprendendo novos conceitos, embora ainda num nível muito alto.
+        Enquanto isso, você começa a se aprofundar em alguns conceitos do nível anterior.
+
+      taskSet:
+        - description: |
+            Vamos estudar estruturas de dados.
+
+          tasks:
+            - id: stack-intro
+              check: Stack
+            - id: queue-intro
+              check: Queue
+            - id: binary-tree-intro
+              check: Binary tree

@@ -3,6 +3,11 @@ import { Transition } from '@headlessui/react'
 import { GetStaticProps } from 'next'
 import { InferGetStaticPropsType } from 'next'
 
+import { ChecklistModel } from '../models/checklist'
+
+var checklistModel
+
+
 function textToParagraph(text: string, options?: { tag: string }): string {
   var tag = "<p>"
 
@@ -32,15 +37,18 @@ function rawToHtml(text: string, options?: { className: string }) {
 
 function Task({ task }: InferGetStaticPropsType<GetStaticProps>) {
   const description = task.description
-  const taskId = (id) => `task-${id}`
+  const id = task.id
   const [checked, check] = useState(false);
   const [expanded, expand] = useState(false);
 
   useEffect(() => {
-    check(window.localStorage.getItem(taskId(task.id)) == "true")
+    check(checklistModel.isChecked(task.id))
   }, []); // only run on first render
 
-  const handleCheck = (event) => check(!checked)
+  const handleCheck = (event) => {
+    checklistModel.check(task.id, !checked)
+    check(!checked)
+  }
   const handleExpand = (event) => expand(description && !expanded)
 
   return (
@@ -105,21 +113,34 @@ function TaskSet({ taskSet }: InferGetStaticPropsType<GetStaticProps>) {
 }
 
 function Checklist({ checklist }: InferGetStaticPropsType<GetStaticProps>) {
+  checklistModel = new ChecklistModel(checklist)
+
   const renderList = (listName) => {
     const list = checklist.lists[listName];
     const taskSets = list.taskSet;
+    const [expanded, expand] = useState(false);
+
+    useEffect(() => {
+      expand(true)
+    }, [])
 
     return (
       <>
-        <h2>{list.title}</h2>
+        <div onClick={() => expand(!expanded)} className="flex">
+          <h2 className="flex-initial">
+            {list.title}
+          </h2>
+        </div>
 
-        {list.description &&
-          rawToHtml(list.description, { className: "mt-2 mb-0 prose" })
-        }
+        <div className={expanded ? "" : "hidden"}>
+          {list.description &&
+            rawToHtml(list.description, { className: "mt-2 mb-0 prose" })
+          }
 
-        {taskSets && taskSets.map((taskSet, index) => (
-          <TaskSet key={index} taskSet={taskSet} />
-        ))}
+          {taskSets && taskSets.map((taskSet, index) => (
+            <TaskSet key={index} taskSet={taskSet} />
+          ))}
+        </div>
       </>
     )
   }

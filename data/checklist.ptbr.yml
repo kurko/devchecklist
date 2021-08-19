@@ -4,7 +4,7 @@ checklist:
       title: "Básico"
       description: |
         Na primeira fase da sua jornada você se familiarizará com conceitos básicos. Eles são pilares importantes.
-        
+
         Você não deve se aprofundar demais em cada tópico porque isso virá
         naturalmente com o tempo. O objetivo é cobrir mais terreno e se sentir
         mais confortável com as diferentes áreas.
@@ -220,11 +220,11 @@ checklist:
             Vamos estudar estruturas de dados.
 
           tasks:
-            - id: stack-intro
+            - id: midlevel-stack-intro
               check: Stack
-            - id: queue-intro
+            - id: midlevel-queue-intro
               check: Queue
-            - id: binary-tree-intro
+            - id: midlevel-binary-tree-intro
               check: Binary tree
 
     senior:
@@ -241,9 +241,9 @@ checklist:
             Vamos estudar estruturas de dados.
 
           tasks:
-            - id: stack-intro
+            - id: senior-stack-intro
               check: Stack
-            - id: queue-intro
+            - id: senior-queue-intro
               check: Queue
-            - id: binary-tree-intro
+            - id: senior-binary-tree-intro
               check: Binary tree

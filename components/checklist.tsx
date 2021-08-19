@@ -3,6 +3,7 @@ import { Transition } from '@headlessui/react'
 import { GetStaticProps } from 'next'
 import { InferGetStaticPropsType } from 'next'
 
+import { ChevronRightIcon } from '@heroicons/react/solid'
 import { ChecklistModel } from '../models/checklist'
 
 var checklistModel
@@ -121,15 +122,26 @@ function Checklist({ checklist }: InferGetStaticPropsType<GetStaticProps>) {
     const [expanded, expand] = useState(false);
 
     useEffect(() => {
-      expand(true)
+      expand(checklistModel.isListReadyToBeStarted(listName))
     }, [])
+
+    const handleListCollapsing = (event) => {
+      checklistModel.markListAsCollapsed(listName, expanded)
+      expand(!expanded)
+    }
 
     return (
       <>
-        <div onClick={() => expand(!expanded)} className="flex">
+        <div onClick={handleListCollapsing} className="flex">
           <h2 className="flex-initial">
             {list.title}
           </h2>
+          <ChevronRightIcon
+            className={`
+              flex-initial h-7 w-7 mt-1 text-gray-400
+              transform transition duration-100
+              ${expanded ? "rotate-90 mt-1" : "text-blue-400"}
+            `} />
         </div>
 
         <div className={expanded ? "" : "hidden"}>

@@ -39,7 +39,6 @@ export class ChecklistModel {
     if (listPosition > 0) {
       previousListName = allListNames[listPosition - 1]
       previousList = this.data.lists[previousListName]
-      console.log("supposed previousList", previousList)
     }
 
     const isPreviousListTasksComplete = previousList && this.isListAlmostComplete(previousListName)
@@ -60,7 +59,6 @@ export class ChecklistModel {
    * "collapse" is when a list is hidden because the user clicked on it
    */
   markListAsCollapsed(listName: string, value: boolean) {
-    console.log(listName);
     window.localStorage.setItem(`${this.listId(listName)}-collapsed`, `${value}`)
   }
 
@@ -70,7 +68,6 @@ export class ChecklistModel {
 
   private listTasks(listName: string): any {
     let tasks = []
-    console.log("listTasks listname", listName)
     this.getList(listName).taskSet.forEach((set) => {
       set.tasks.forEach((task) => tasks.push(task))
     })
@@ -87,7 +84,6 @@ export class ChecklistModel {
       return window.localStorage.getItem(this.taskId(task.id)) == "true"
     }).length
 
-    console.log("totalCompletedTasks", totalCompletedTasks)
     return totalCompletedTasks / totalTasks > 0.8
   }
 

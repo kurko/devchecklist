@@ -1,12 +1,17 @@
+import { useState, useEffect } from 'react'
+
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/layout'
 import Checklist from '../components/checklist'
+import NewsletterForm from '../components/newsletter_form'
 
 import { GetStaticProps } from 'next'
 import { InferGetStaticPropsType } from 'next'
 
 function Home({ checklist }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [isNewsletterVisible, showNewsletter] = useState(false)
+
   return (
     <div>
       <Head>
@@ -16,13 +21,20 @@ function Home({ checklist }: InferGetStaticPropsType<typeof getStaticProps>) {
 
       <Layout>
         <main>
-          <h1 className="mb-4">Checklist Do Dev</h1>
-
           <div className="mb-7 prose">
             <p>
-              Este roadmap possui as habilidades necessárias para trabalhar com desenvolvimento.
+              Use esta checklist na sua trajetória como desenvolvedor.&nbsp;
+              <a onClick={() => showNewsletter(!isNewsletterVisible)}>
+                Aprenda como usar essa checklist.
+              </a>
+              &nbsp;
+              <a onClick={() => showNewsletter(!isNewsletterVisible)}>
+                Inscreva-se para receber updates.
+              </a>
             </p>
           </div>
+
+          <NewsletterForm className={`${isNewsletterVisible ? "" : "hidden"}`} />
 
           <Checklist checklist={checklist}/>
         </main>

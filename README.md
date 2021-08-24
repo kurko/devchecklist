@@ -1,8 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project. Production is running at
 
-🇧🇷 Este é o repositório de [checklistdodev.com](checklistdodev.com).
+🇧🇷 Este é o repositório de [checklistdodev.com](checklistdodev.com). A lista original pode ser encontrada [aqui](https://github.com/junior-path/learning-checklists/blob/master/checklists/from-zero-to-ruby-on-rails.md).
 
-🇬🇧 This is the repository for [checklistdodev.com](checklistdodev.com).
+🇬🇧 This is the repository for [checklistdodev.com](checklistdodev.com). The original list can be found [here](https://github.com/junior-path/learning-checklists/blob/master/checklists/from-zero-to-ruby-on-rails.md).
 
 ## Getting Started
 
